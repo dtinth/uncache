@@ -79,6 +79,61 @@ just change `live.function` to `require`, and it's done!
 
 
 
+What It Does Not Do
+-------------------
+
+This module is only concerned about making `require()` clear the cache.
+
+It does not have these features:
+
+
+
+### Switching between `live` and `require`.
+
+Create your own abstraction, such as:
+
+```javascript
+function load(module) {
+  return (process.env.NODE_ENV == 'production') ? require(module) : live(module)
+}
+```
+
+
+### Do some cleanup when a module is reloaded.
+
+Maybe you can use a global variable for this.
+Here is a `cleanup` function:
+
+```javascript
+function cleanup(module, fn) {
+
+  var key = 'cleanup:' + module.id
+
+  // If there is a cleanup function for this module,
+  // this means the module is loaded, so, call it:
+  if (global[key]) {
+    global[key]()
+  }
+
+  // Register the cleanup function.
+  global[key] = fn
+
+}
+```
+
+When `cleanup` is called the second time (when the module is reloaded),
+it will detect the cleanup function from the first load and run it.
+
+```javascript
+console.log('Start up!')
+
+cleanup(module, function() {
+  console.log('Shut down!')
+})
+```
+
+
+
 
 
 
