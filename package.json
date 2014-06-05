@@ -1,0 +1,24 @@
+{
+  "name": "uncache",
+  "version": "0.0.0",
+  "description": "non-caching require() for live coding",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dtinth/uncache.git"
+  },
+  "keywords": [
+    "live",
+    "coding",
+    "require"
+  ],
+  "author": "Thai Pangsakulyanont <org.yi.dttvb@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dtinth/uncache/issues"
+  },
+  "homepage": "https://github.com/dtinth/uncache"
+}
